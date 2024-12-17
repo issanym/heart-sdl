@@ -54,27 +54,18 @@ int main (int argc, char *argv[])
          SDL_RenderClear(gRend);
          
          
-
-         for (int i=0; i<=INNER_WIDTH; i+=10) 
-         {
-            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
-            SDL_RenderDrawLine(gRend, CENTER_X, Y_END, X_ORIGIN+i, CENTER_Y-50);
-
-         }
+         // bottom part
+         SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+         SDL_RenderDrawLine(gRend, CENTER_X, Y_END, X_ORIGIN, CENTER_Y-50);
+         SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+         SDL_RenderDrawLine(gRend, CENTER_X, Y_END, X_END, CENTER_Y-50);
          
          // top part
          // -------------- oblique
-         for (int i = 0; i <= 170; i+=10) 
-         {
-            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
-            SDL_RenderDrawLine(gRend, X_ORIGIN+i, CENTER_Y-50, (X_ORIGIN+70), Y_ORIGIN);
-         }
-         for (int i = 170; i>=0; i-=10) 
-         {
-            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
-            SDL_RenderDrawLine(gRend, X_END-i, CENTER_Y-50, X_END-70, Y_ORIGIN);
-         }
-         
+         SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+         SDL_RenderDrawLine(gRend, X_ORIGIN, CENTER_Y-50, (X_ORIGIN+70), Y_ORIGIN);
+         SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+         SDL_RenderDrawLine(gRend, X_END, CENTER_Y-50, (X_END-70), Y_ORIGIN);         
          // ------------------- horizontal
          SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
          SDL_RenderDrawLine(gRend, X_ORIGIN+70, Y_ORIGIN, X_ORIGIN+120, Y_ORIGIN);
@@ -86,9 +77,41 @@ int main (int argc, char *argv[])
          SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
          SDL_RenderDrawLine(gRend, CENTER_X, Y_END-262, X_END-120, Y_ORIGIN);
 
+         //fill heart
+         const int STEP_X=10;
+         const int STEP_Y=12;
+         const float STEPY_2=8.5f;
 
-
+         SDL_SetRenderDrawColor(gRend, 0, 0, 0xff, 250);
+         SDL_RenderDrawLine(gRend, CENTER_X, Y_END-262, CENTER_X, Y_END);
          
+         for (int i=0; i<=5; i++) 
+         {
+            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+            SDL_RenderDrawLine(gRend, CENTER_X-STEP_X*i, Y_END-(262+STEPY_2*i), CENTER_X-STEP_X*i, Y_END-STEP_Y*i);
+            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+            SDL_RenderDrawLine(gRend, CENTER_X+STEP_X*i, Y_END-(262+STEPY_2*i), CENTER_X+STEP_X*i, Y_END-STEP_Y*i);
+         }
+
+         const float Y_ENDNW = Y_END-STEP_Y*10.3;
+
+         for (int i=0; i<=5; i++) 
+         {
+            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+            SDL_RenderDrawLine(gRend, X_ORIGIN+(70+STEP_X*i), Y_ORIGIN, X_ORIGIN+70+STEP_X*i, Y_ENDNW+STEP_Y*i);
+
+            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+            SDL_RenderDrawLine(gRend, X_END-(70+STEP_X*i), Y_ORIGIN, X_END-(70+STEP_X*i), Y_ENDNW+STEP_X*i);
+
+            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+            SDL_RenderDrawLine(gRend, X_ORIGIN+(60-STEP_X*i), Y_ORIGIN+16+STEP_Y*i*1.25, X_ORIGIN+(60-STEP_X*i), Y_ENDNW-13-STEP_Y*i);
+            SDL_SetRenderDrawColor(gRend, 0xff, 0, 0, 250);
+            SDL_RenderDrawLine(gRend, X_END-(60-STEP_X*i), Y_ORIGIN+16+STEP_Y*i*1.25, X_END-(60-STEP_X*i), Y_ENDNW-13-STEP_Y*i);
+         }
+         
+         
+                  //SDL_SetRenderDrawColor(gRend, 0, 0, 0xff, 250);
+           // SDL_RenderDrawLine(gRend, X_END-70, Y_ORIGIN, X_END-70, Y_ENDNW);
          //SDL_RenderDrawLine(gRend, SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT);
 
          // update screen
