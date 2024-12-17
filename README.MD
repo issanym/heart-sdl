@@ -1,3 +1,3 @@
 ## Heart Made With Lines
 
-![[image.png]]
+![HEART](/image.png)
